@@ -33,6 +33,8 @@ import {PointsComponent} from './points.component'
 
 export class TaskListComponent {
   public newtasks: Task[] = [];
+
+
   public selectedTask: Task;
   constructor() {
     this.newtasks = [
@@ -58,11 +60,12 @@ export class TaskListComponent {
     this.selectedTask = clicked;
     console.log("got it");
     console.log("selected task: " + this.selectedTask.description);
+    this.newtasks = this.newtasks.sort(function(a, b) {
+          return (b.points) - (a.points);
+      });
   }
 
   delete(beerSelected: Task) {
-    // var num = this.newtasks.length;
-    // console.log(num);
     for (var i =0; i<this.newtasks.length; i++){
       if(beerSelected.id === this.newtasks[i].id){
         this.newtasks.splice(i, 1);
